@@ -32,6 +32,8 @@ const createWindow = () => {
   }
 };
 
+// Declare exposed APIs for renderer process
+
 /*  ------ App lifecycle ---- */
 
 // This method will be called when Electron has finished initialization and
