@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEventHandler } from 'react';
 import './App.css';
 
 /* ------------------------------------------------ */
@@ -39,7 +39,7 @@ function App() {
     }
   };
 
-  const handleContentChange = (e) => {
+  const handleContentChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setContent(e.target.value);
     setIsSaved(false);
   };
