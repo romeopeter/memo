@@ -1,5 +1,6 @@
-import { useState, useEffect, ChangeEventHandler } from 'react';
-import './App.css';
+import { useState, useEffect, ChangeEventHandler } from "react";
+import "./styles/App.css";
+// import "./styles/globals.css"
 
 /* ------------------------------------------------ */
 
@@ -7,16 +8,19 @@ declare global {
   interface Window {
     electron: {
       saveFile: (filePath: string | null, content: string) => Promise<void>;
-      openFile: () => Promise<{ content: string; filePath: string | null } | null>;
+      openFile: () => Promise<{
+        content: string;
+        filePath: string | null;
+      } | null>;
       newFile: () => Promise<void>;
     };
   }
 }
 
 function App() {
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [isSaved, setIsSaved] = useState(true);
-  const [currentFile, setCurrentFile] = useState(null);
+  const [currentFile, setCurrentFile] = useState<string | null>(null);
 
   // Auto-save effect with debouncing
   useEffect(() => {
@@ -35,7 +39,7 @@ function App() {
       await window.electron.saveFile(currentFile, content);
       setIsSaved(true);
     } catch (error) {
-      console.error('Failed to save:', error);
+      console.error("Failed to save:", error);
     }
   };
 
@@ -46,9 +50,9 @@ function App() {
 
   const handleNewFile = () => {
     if (!isSaved) {
-      if (!confirm('You have unsaved changes. Continue?')) return;
+      if (!confirm("You have unsaved changes. Continue?")) return;
     }
-    setContent('');
+    setContent("");
     setCurrentFile(null);
     setIsSaved(true);
   };
@@ -62,14 +66,14 @@ function App() {
         setIsSaved(true);
       }
     } catch (error) {
-      console.error('Failed to open file:', error);
+      console.error("Failed to open file:", error);
     }
   };
 
   return (
-    <div className="memeo-app">
+    <div className="memo-app">
       <header className="app-header">
-        <h1>Memo</h1>
+        <h1 className="text-3xl font-bold text-blue-600">Memo</h1>
         <div className="toolbar">
           <button onClick={handleNewFile}>New</button>
           <button onClick={handleOpenFile}>Open</button>
@@ -77,11 +81,11 @@ function App() {
             Save
           </button>
           <span className="save-indicator">
-            {isSaved ? '✓ Saved' : '● Unsaved'}
+            {isSaved ? "✓ Saved" : "● Unsaved"}
           </span>
         </div>
       </header>
-      
+
       <main className="editor-container">
         <textarea
           className="markdown-editor"
