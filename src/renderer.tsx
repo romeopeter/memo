@@ -28,7 +28,7 @@
 
 import { createRoot } from "react-dom/client";
 import App from "./renderer-process/App";
-import "./renderer-process/App.css";
+import "./renderer-process/styles/globals.css";
 
 /* ------------------------------------------------ */
 
