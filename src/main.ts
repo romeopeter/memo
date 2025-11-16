@@ -17,7 +17,6 @@ if (started) {
 let mainWindow;
 
 const createWindow = () => {
-  // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -26,7 +25,6 @@ const createWindow = () => {
     },
   });
 
-  // and load the index.html of the app.
   if (typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined") {
     console.log("Loading from dev server:", MAIN_WINDOW_VITE_DEV_SERVER_URL);
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
@@ -37,19 +35,18 @@ const createWindow = () => {
     );
   }
 
-  // Open the DevTools.
   if (!app.isPackaged) {
+    // Open the DevTools.
     mainWindow.webContents.openDevTools();
+
+    // Declare exposed APIs for renderer process
+    setupIpcCalls(mainWindow);
   }
 };
 
-// Declare exposed APIs for renderer process
-setupIpcCalls(mainWindow);
-
 /*  ------ App lifecycle ---- */
 
-// This method will be called when Electron has finished initialization and
-// is ready to create browser windows. Some APIs can only be used after this event occurs.
+// Called when Electron has finished initialization and is ready to create browser windows.
 app.on("ready", createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
