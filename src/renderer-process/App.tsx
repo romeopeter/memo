@@ -1,13 +1,19 @@
 import { useState, useEffect, ChangeEventHandler } from "react";
 import "./styles/App.css";
-// import "./styles/globals.css"
 
 /* ------------------------------------------------ */
 
 declare global {
   interface Window {
     electron: {
-      saveFile: (filePath: string | null, content: string) => Promise<void>;
+      saveFile: (
+        filePath: string | null,
+        content: string
+      ) => Promise<{
+        success: boolean;
+        canceled?: boolean;
+        filePath: string | null;
+      }>;
       openFile: () => Promise<{
         content: string;
         filePath: string | null;
@@ -19,24 +25,27 @@ declare global {
 
 function App() {
   const [content, setContent] = useState("");
-  const [isSaved, setIsSaved] = useState(true);
+  const [isSaved, setIsSaved] = useState(false);
   const [currentFile, setCurrentFile] = useState<string | null>(null);
 
-  // Auto-save effect with debouncing
+  // Save content with debounce of 2s.
   useEffect(() => {
-    if (!content || isSaved) return;
+    if (!currentFile) return;
 
-    const timeoutId = setTimeout(() => {
-      saveContent();
-    }, 2000); // Auto-save after 2 seconds of inactivity
+    const timeout = setTimeout(() => saveContent(), 2000);
 
-    return () => clearTimeout(timeoutId);
-  }, [content, isSaved]);
+    return () => clearTimeout(timeout);
+  }, [content]);
 
   const saveContent = async () => {
     try {
-      // This will call your IPC handler in the main process
-      await window.electron.saveFile(currentFile, content);
+      const savedPath = await window.electron.saveFile(currentFile, content);
+
+      if (savedPath) {
+        setCurrentFile(savedPath.filePath);
+      }
+
+      console.log(savedPath.filePath);
       setIsSaved(true);
     } catch (error) {
       console.error("Failed to save:", error);
@@ -45,7 +54,6 @@ function App() {
 
   const handleContentChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setContent(e.target.value);
-    setIsSaved(false);
   };
 
   const handleNewFile = () => {
@@ -54,7 +62,7 @@ function App() {
     }
     setContent("");
     setCurrentFile(null);
-    setIsSaved(true);
+    setIsSaved(false);
   };
 
   const handleOpenFile = async () => {
@@ -88,7 +96,7 @@ function App() {
 
       <main className="editor-container">
         <textarea
-          className="markdown-editor"
+          className="markdown-editor border border-red-500"
           value={content}
           onChange={handleContentChange}
           placeholder="Start writing your thoughts..."
