@@ -5,45 +5,42 @@ import fs from "node:fs/promises";
 
 // Define a function to set up IPC calls
 export function setupIpcCalls(mainWindow: BaseWindow | undefined) {
-  // Handle invokable IPC calls from renderer process
-  ipcMain.handle(
-    "save-file",
-    async (_, filePath: string, content: string) => {
-      let savePath = filePath;
+  // Handle invocable IPC calls from renderer process
+  ipcMain.handle("save-file", async (_, filePath: string, content: string) => {
+    let savePath: string | null = filePath;
 
-      if (!mainWindow) {
-        console.log("No main window available");
-        return { success: false, error: "No active window" };
-      }
+    if (!mainWindow) {
+      console.log("No main window available");
+      return { success: false, error: "No active window" };
+    }
 
-      try {
-        // If no file path, show saved dialogue.
-        if (!savePath) {
-          const saveDialog = await dialog.showSaveDialog(mainWindow, {
-            title: "Save Memo",
-            defaultPath: "memo.md",
-            filters: [
-              { name: "Markdown Files", extensions: ["md", "markdown"] },
-              { name: "All Files", extensions: ["*"] },
-            ],
-          });
+    try {
+      // If no file path, show saved dialogue.
+      if (!savePath) {
+        const saveDialog = await dialog.showSaveDialog(mainWindow, {
+          title: "Save Memo",
+          defaultPath: "memo.md",
+          filters: [
+            { name: "Markdown Files", extensions: ["md", "markdown"] },
+            { name: "All Files", extensions: ["*"] },
+          ],
+        });
 
-          if (saveDialog.canceled) {
-            return { success: false, canceled: true };
-          }
-
-          savePath = saveDialog.filePath;
+        if (saveDialog.canceled) {
+          return { success: false, canceled: true };
         }
 
-        fs.writeFile(savePath, content, "utf-8");
-
-        return { success: true, filePath: savePath };
-      } catch (error: any) {
-        console.error("Error saving file:", error);
-        return { success: false, error: error.message };
+        savePath = saveDialog.filePath;
       }
+
+      fs.writeFile(savePath, content, "utf-8");
+
+      return { success: true, filePath: savePath };
+    } catch (error: any) {
+      savePath = null;
+      return { success: false, error: error.message, filePath: savePath };
     }
-  );
+  });
 
   ipcMain.handle("open-file", async () => {
     try {
@@ -67,7 +64,6 @@ export function setupIpcCalls(mainWindow: BaseWindow | undefined) {
       throw error;
     }
   });
-
 
   // Listen for events from renderer process
   ipcMain.on("onFileOpen", (event) => {
