@@ -91,5 +91,6 @@ typings/
 # Electron-Forge
 out/
 dist/
-
+# Misc
 todo.md
+design-system
