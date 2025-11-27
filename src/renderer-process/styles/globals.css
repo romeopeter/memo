@@ -112,7 +112,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* ----- MEMO DESIGN SYSTEM ----- */
+  /* ----- MEMO DESIGN SYSTEM Variables ----- */
 
   /* Primary Gradient -- Soft Fog Grey */
   --color-fog-50: #fafafa;
@@ -224,7 +224,7 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08);
 }
 
-/* ----- SHADCN ----- */
+/* ----- SHAD-CN ----- */
 
 @layer base {
   * {
@@ -235,94 +235,210 @@
   }
 }
 
-/* ----- MEMO UTILITY AND COMPONENT ----- */
+/* ----- MEMO STYLE SYSTEM ----- */
 
-/* Custom Utility Classes */
-@layer utilities {
-  /* Text Gradients */
-  .text-gradient-primary {
-    @apply bg-gradient-to-r from-fog-200 to-fog-400 bg-clip-text text-transparent;
-  }
-
-  .text-gradient-accent {
-    @apply bg-gradient-to-r from-dawn-400 to-mist-500 bg-clip-text text-transparent;
-  }
-
-  /* Background Gradients */
-  .bg-gradient-fog {
-    @apply bg-gradient-to-br from-fog-50 to-fog-200;
-  }
-
-  .bg-gradient-fog-dark {
-    @apply bg-gradient-to-br from-slate-900 to-slate-950;
-  }
-
-  .bg-gradient-dawn {
-    @apply bg-gradient-to-r from-dawn-400 via-dawn-500 to-mist-500;
-  }
-
-  .bg-gradient-mist {
-    @apply bg-gradient-to-br from-mist-400 to-mist-600;
-  }
-
-  /* Typography Presets */
-  .text-editor {
-    @apply font-mono text-lg leading-relaxed;
-  }
-
-  .text-ui {
-    @apply font-sans font-light tracking-tight;
-  }
-
-  /* Frosted Glass Effect */
-  .glass-light {
-    @apply bg-white/70 backdrop-blur-md border border-fog-200/50;
-  }
-
-  .glass-dark {
-    @apply bg-slate-900/70 backdrop-blur-md border border-slate-700/50;
-  }
-
-  /* Focus States */
-  .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-mist-400 focus:ring-offset-2;
-  }
-
-  .focus-ring-dark {
-    @apply focus:outline-none focus:ring-2 focus:ring-mist-500 focus:ring-offset-2 focus:ring-offset-slate-900;
-  }
+/* Text gradient */
+.text-gradient-primary {
+  background-image: linear-gradient(
+    to right,
+    var(--color-fog-200),
+    var(--color-fog-400)
+  );
+  background-clip: text;
+  color: transparent;
 }
 
-/* Component Examples */
-@layer components {
-  /* Button Variants */
-  .btn-primary {
-    @apply px-4 py-2 rounded-lg font-medium text-white bg-gradient-dawn 
-           hover:shadow-lg transition-all duration-300 focus-ring;
-  }
+.text-gradient-accent {
+  background-image: linear-gradient(
+    to right,
+    var(--color-dawn-400),
+    var(--color-mist-500)
+  );
+  background-clip: text;
+  color: transparent;
+}
 
-  .btn-ghost {
-    @apply px-4 py-2 rounded-lg font-light text-fog-700 
-           hover:bg-fog-100 transition-colors duration-200 focus-ring;
-  }
+/* Background gradient */
+.bg-gradient-fog {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-fog-50),
+    var(--color-fog-200)
+  );
+}
 
-  .btn-ghost-dark {
-    @apply px-4 py-2 rounded-lg font-light text-fog-300 
-           hover:bg-slate-800 transition-colors duration-200 focus-ring-dark;
-  }
+.bg-gradient-fog-dark {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(15 23 42),
+    rgb(2 6 23)
+  );
+}
 
-  /* Input Styles */
-  .input-text {
-    @apply w-full px-4 py-2 bg-fog-50 border border-fog-200 rounded-lg
-           text-fog-900 placeholder:text-fog-400 font-mono
-           focus:border-mist-400 focus:ring-2 focus:ring-mist-400/20
-           transition-all duration-200;
-  }
+.bg-gradient-dawn {
+  background-image: linear-gradient(
+    to right,
+    var(--color-dawn-400),
+    var(--color-dawn-500),
+    var(--color-mist-500)
+  );
+}
 
-  .input-text-dark {
-    @apply w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg
-           text-fog-100 placeholder:text-fog-600 font-mono
-           focus:border-mist-500 focus:ring-2 focus:ring-mist-500/20
-           transition-all duration-200;
-  }
+.bg-gradient-mist {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-mist-400),
+    var(--color-mist-600)
+  );
+}
+/* Typography */
+.text-editor {
+  font-family: ui-monospace, monospace;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.text-ui {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+/* Frosted glass effect */
+.glass-light {
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(229 231 235 / 0.5);
+}
+
+.glass-dark {
+  background-color: rgb(15 23 42 / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgb(51 65 85 / 0.5);
+}
+
+/* Focus state  */
+.focus-ring:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-mist-400),
+    0 0 0 4px transparent;
+}
+
+.focus-ring-dark:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-mist-500),
+    0 0 0 4px rgb(15 23 42);
+}
+
+/* Button Variants */
+.btn-primary {
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  color: white;
+  background-image: linear-gradient(
+    to right,
+    var(--color-dawn-400),
+    var(--color-dawn-500),
+    var(--color-mist-500)
+  );
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-mist-400),
+    0 0 0 4px transparent;
+}
+
+.btn-ghost {
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 300;
+  color: var(--color-fog-700);
+  transition: colors 0.2s;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-fog-100);
+}
+
+.btn-ghost:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-mist-400),
+    0 0 0 4px transparent;
+}
+
+.btn-ghost-dark {
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 300;
+  color: var(--color-fog-300);
+  transition: colors 0.2s;
+}
+
+.btn-ghost-dark:hover {
+  background-color: rgb(30 41 59);
+}
+
+.btn-ghost-dark:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--color-mist-500),
+    0 0 0 4px rgb(15 23 42);
+}
+
+/* Input Styles */
+.input-text {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-fog-50);
+  border: 1px solid var(--color-fog-200);
+  border-radius: 0.5rem;
+  color: var(--color-fog-900);
+  font-family: ui-monospace, monospace;
+  transition: all 0.2s;
+}
+
+.input-text::placeholder {
+  color: var(--color-fog-400);
+}
+
+.input-text:focus {
+  outline: none;
+  border-color: var(--color-mist-400);
+  box-shadow: 0 0 0 2px rgb(var(--color-mist-400) / 0.2);
+}
+
+.input-text-dark {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: rgb(15 23 42);
+  border: 1px solid rgb(51 65 85);
+  border-radius: 0.5rem;
+  color: var(--color-fog-100);
+  font-family: ui-monospace, monospace;
+  transition: all 0.2s;
+}
+
+.input-text-dark::placeholder {
+  color: var(--color-fog-600);
+}
+
+.input-text-dark:focus {
+  outline: none;
+  border-color: var(--color-mist-500);
+  box-shadow: 0 0 0 2px rgb(var(--color-mist-500) / 0.2);
 }
