@@ -9,6 +9,8 @@ import { FuseV1Options, FuseVersion } from "@electron/fuses";
 
 const config: ForgeConfig = {
   packagerConfig: {
+    name: "memo",
+    executableName: "memo",
     asar: true,
   },
   rebuildConfig: {},
@@ -62,7 +64,9 @@ const config: ForgeConfig = {
           name: "memo",
           owner: "romeopeter",
         },
-        prerelease: true,
+        prerelease: false,
+        draft: true,
+        token: process.env.GITHUB_TOKEN,
       },
     },
   ],
