@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, ChangeEventHandler } from "react";
-import QuillEditor from "./editor/quill";
+import QuillEditor from "./lib/editor/quill";
 import "./styles/App.css";
+import { Button } from "@components/shadcn/button";
 
 /* ------------------------------------------------ */
 
@@ -130,48 +131,20 @@ function App() {
     }
   };*/
 
-  console.log(editorRef.current, content);
-
   return (
     <div className="memo-app">
-      <header className="app-header">
-        <h1 className="text-3xl font-bold text-blue-600">Memo</h1>
-        <div className="toolbar">
-          <button onClick={() => applyHighlight('#fca5a5')}>New</button>
-          <button>Open</button>
-          <button>Save</button>
-          <span className="save-indicator">
-            {isSaved ? "✓ Saved" : "● Unsaved"}
-          </span>
+      <header className="app-header flex items-center justify-between">
+        <div className="flex items-center gap-5">
+          <h1 className="text-2xl font-bold text-blue-600">Memo</h1>
+          <span>saved</span>
         </div>
+
+        <Button>Share with us</Button>
       </header>
 
-      {/* 
-        Custom Toolbar
-        
-        Should have headers (h1-h3)
-        Should have bold and italic
-        Should have highlight and uppercase
-        Should have quote and link insertion
-        Should have list (bullet and number)
-
-      */}
-
-      <div id="toolbar" className="mb-4 border border-gray-300 rounded-t-lg p-3 bg-gray-50">
-        <span className="ql-formats">
-          <button className="ql-bold"></button>
-          <button className="ql-italic"></button>
-          <select className="ql-header">
-            <option value="1"></option>
-            <option value="2"></option>
-            <option selected></option>
-          </select>
-        </span>
-      </div>
-
-      <main className="editor-container">
+      <main className="h-screen editor-container">
         <div
-          className="markdown-editor border border-red-500 min-h-[300px]"
+          className="h-full max-h-[95%] markdown-editor overflow-y-scroll"
           ref={editorRef}
         />
       </main>
