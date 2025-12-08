@@ -224,8 +224,6 @@
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08);
 }
 
-/* ----- SHAD-CN ----- */
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
