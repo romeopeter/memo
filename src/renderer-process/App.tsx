@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ChangeEventHandler } from "react";
+import { useState, useEffect, useRef } from "react";
 import QuillEditor from "./lib/editor/quill";
 import "./styles/App.css";
 import { Button } from "@components/shadcn/button";
