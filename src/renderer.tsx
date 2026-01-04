@@ -28,9 +28,10 @@
 
 import { createRoot } from "react-dom/client";
 import App from "./renderer-process/App";
+import WriteStream from "./renderer-process/writestream";
 import "./renderer-process/styles/globals.css";
-
-/* ------------------------------------------------ */
+import { HashRouter, Routes, Route } from "react-router-dom";
+/* ------------------------------------------------------------- */
 
 let rootElement = document.getElementById("root");
 
@@ -42,4 +43,11 @@ if (!rootElement) {
 
 // Render React app
 const root = createRoot(rootElement);
-root.render(<App />);
+root.render(
+  <HashRouter>
+    <Routes>
+      <Route path="/" element={<WriteStream />} />
+      <Route path="/editor" element={<App />} />
+    </Routes>
+  </HashRouter>
+);
