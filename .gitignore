@@ -95,3 +95,6 @@ dist/
 todo.md
 design-system
 product-carving
+
+# Agents
+.agents/

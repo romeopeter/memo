@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "node:path";
 import started from "electron-squirrel-startup";
-import { setupIpcCalls } from "./main-process/ipc-calls";
+import { setupIpcCalls } from "./ipc/ipc-calls";
 
 /* -------------------------------------------------------- */
 

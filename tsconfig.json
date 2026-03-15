@@ -8,9 +8,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src"],
-      "@components/*": ["./src/renderer-process/components/*"],
-      "@lib/*": ["./src/renderer-process/lib/*"],
-      "@utils/*": ["./src/renderer-process/lib/utils/*"]
+      "@components/*": ["./src/components/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@utils/*": ["./src/lib/utils/*"]
     },
 
     /* Bundler mode */
@@ -27,5 +27,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "electron", "shared"]
 }

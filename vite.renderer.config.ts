@@ -11,9 +11,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "@components": path.resolve(__dirname, "./src/renderer-process/components"),
-      "@lib": path.resolve(__dirname, "./src/renderer-process/lib"),
-      "@utils": path.resolve(__dirname, "./src/renderer-process/lib/utils"),
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@lib": path.resolve(__dirname, "./src/lib"),
+      "@utils": path.resolve(__dirname, "./src/lib/utils"),
     },
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
   },
