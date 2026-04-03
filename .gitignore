@@ -98,3 +98,6 @@ product-carving
 
 # Agents
 .agents/
+
+# Claude Code local settings
+.claude/settings.local.json
