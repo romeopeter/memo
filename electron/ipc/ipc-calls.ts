@@ -18,8 +18,8 @@ export function setupIpcCalls(mainWindow: BaseWindow | undefined) {
       // If no file path, show saved dialogue.
       if (!savePath) {
         const saveDialog = await dialog.showSaveDialog(mainWindow, {
-          title: "Save Memo",
-          defaultPath: "memo.md",
+          title: "Save Document",
+          defaultPath: "document.md",
           filters: [
             { name: "Markdown Files", extensions: ["md", "markdown"] },
             { name: "All Files", extensions: ["*"] },
@@ -45,7 +45,7 @@ export function setupIpcCalls(mainWindow: BaseWindow | undefined) {
   ipcMain.handle("open-file", async () => {
     try {
       const openDialog = await dialog.showOpenDialog({
-        title: "Open Memo",
+        title: "Open Document",
         filters: [
           { name: "Markdown Files", extensions: ["md", "markdown"] },
           { name: "All Files", extensions: ["*"] },

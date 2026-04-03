@@ -2,11 +2,11 @@
 
 @theme {
   /* ============================================
-     MEMO + SHADCN MERGED DESIGN SYSTEM
+     WRITESTREAM + SHADCN MERGED DESIGN SYSTEM
      ============================================ */
 
   /* ----------------------------------------
-     Core Color Palette - Memo Design System
+     Core Color Palette - Writestream Design System
      ---------------------------------------- */
 
   /* Primary Gradient - Soft Fog Grays */
@@ -60,7 +60,7 @@
   --color-slate-950: #020617;
 
   /* ----------------------------------------
-     ShadCN Semantic Tokens (Mapped to Memo)
+     ShadCN Semantic Tokens (Mapped to Writestream)
      ---------------------------------------- */
 
   /* Light Mode Mappings */
@@ -208,7 +208,7 @@
 
 @layer utilities {
   /* ----------------------------------------
-     Memo Gradient Utilities
+     Writestream Gradient Utilities
      ---------------------------------------- */
 
   .text-gradient-primary {
@@ -236,7 +236,7 @@
   }
 
   /* ----------------------------------------
-     Memo Typography Presets
+     Writestream Typography Presets
      ---------------------------------------- */
 
   .text-editor {
@@ -248,7 +248,7 @@
   }
 
   /* ----------------------------------------
-     Memo Glass Effects
+     Writestream Glass Effects
      ---------------------------------------- */
 
   .glass-light {
@@ -278,7 +278,7 @@
 
 @layer components {
   /* ----------------------------------------
-     Memo Custom Buttons
+     Writestream Custom Buttons
      ---------------------------------------- */
 
   .btn-primary {
@@ -297,7 +297,7 @@
   }
 
   /* ----------------------------------------
-     Memo Editor Input Styles
+     Writestream Editor Input Styles
      ---------------------------------------- */
 
   .input-text {
@@ -316,10 +316,10 @@
 
   /* ----------------------------------------
      ShadCN Component Overrides
-     (These ensure ShadCN components use Memo styling)
+     (These ensure ShadCN components use Writestream styling)
      ---------------------------------------- */
 
-  /* Dialog backdrop with Memo aesthetic */
+  /* Dialog backdrop with Writestream aesthetic */
   .dialog-overlay {
     @apply bg-fog-900/20 backdrop-blur-sm;
   }
@@ -329,8 +329,8 @@
     @apply glass-light dark:glass-dark;
   }
 
-  /* Tooltip with Memo styling */
-  .tooltip-memo {
+  /* Tooltip with Writestream styling */
+  .tooltip-writestream {
     @apply bg-fog-800 text-fog-50 text-xs px-3 py-1.5 rounded-md shadow-lg;
   }
 }

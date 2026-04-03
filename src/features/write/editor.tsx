@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import QuillEditor from "./lib/editor/quill";
-import "./styles/App.css";
+import QuillEditor from "@lib/editor/quill";
 import { Button } from "@components/shadcn/button";
+import "../../styles/App.css";
 
 /* ------------------------------------------------ */
 
-function App() {
+export default function Editor() {
   const [isSaved, setIsSaved] = useState(false);
   const [currentFile, setCurrentFile] = useState<string | null>(null);
   const [content, setContent] = useState("");
@@ -23,7 +23,6 @@ function App() {
         placeholder: 'What\'s on your mind today?'
       })
     }
-
 
 
     const quill = quillRef.current;
@@ -132,10 +131,10 @@ function App() {
   };*/
 
   return (
-    <div className="memo-app">
+    <div className="writestream-app">
       <header className="app-header flex items-center justify-between">
         <div className="flex items-center gap-5">
-          <h1 className="text-2xl font-bold text-blue-600">Memo</h1>
+          <h1 className="text-2xl font-bold text-blue-600">Writestream</h1>
           <span>saved</span>
         </div>
 
@@ -151,5 +150,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

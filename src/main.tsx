@@ -27,10 +27,10 @@
  */
 
 import { createRoot } from "react-dom/client";
-import App from "./App";
 import WriteStream from "./writestream";
 import "./styles/globals.css";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import Editor from "./features/write/editor";
 /* ------------------------------------------------------------- */
 
 let rootElement = document.getElementById("root");
@@ -47,7 +47,7 @@ root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<WriteStream />} />
-      <Route path="/editor" element={<App />} />
+      <Route path="/writer" element={<Editor />} />
     </Routes>
   </HashRouter>
 );
