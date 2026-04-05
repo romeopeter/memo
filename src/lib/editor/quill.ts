@@ -3,13 +3,12 @@ import Toolbar from "quill/modules/toolbar";
 import Bold from "quill/formats/bold";
 import Italic from "quill/formats/italic";
 import Header from "quill/formats/header";
+import Blockquote from "quill/formats/blockquote";
 import inline from "quill/blots/inline";
-import Snow from "quill/themes/snow";
-import 'quill/dist/quill.snow.css';
 
 /* ------------------------------------------------ */
 
-// Customer formater: Highlighter
+// Customer formatter: Highlighter
 class HighlightBlot extends inline {
     static blotName = 'highlight';
     static tagName = "mark";
@@ -47,15 +46,15 @@ class UppercaseBlot extends inline {
     }
 }
 
-// Register basic formatter
+// Register formats (no theme — we manage toolbar externally)
 Quill.register({
     "modules/toolbar": Toolbar,
     "formats/bold": Bold,
     "formats/italic": Italic,
     "formats/header": Header,
+    "formats/blockquote": Blockquote,
     "formats/highlight": HighlightBlot,
     "formats/uppercase": UppercaseBlot,
-    'themes/snow': Snow,
 });
 
 export default Quill;

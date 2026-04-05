@@ -1,9 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* ============================================
-   WRITESTREAM APP - TAILWIND V4 THEME
-   ============================================ */
+/* --------------------------------------------------- */
 
 @theme {
   /* ==========================================
@@ -270,6 +268,47 @@
   --color-border: 208 21% 35%;
   --color-input: 208 21% 35%;
   --color-ring: 14 75% 83%;
+}
+
+/* ==========================================
+   THEMELESS QUILL OVERRIDES
+   ========================================== */
+
+.ql-container {
+  font-family: inherit;
+  font-size: inherit;
+  border: none !important;
+  overflow-y: scroll;
+}
+
+.ql-editor {
+  padding: 0;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+.ql-editor.ql-blank::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-muted);
+  font-style: normal;
+  pointer-events: none;
+  position: absolute;
+  /* color: aqua; */
+  padding-bottom: 4px;
+}
+
+/* Title placeholder */
+.editor-title:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-muted);
+  pointer-events: none;
 }
 
 /* ==========================================

@@ -7,9 +7,12 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src"],
+      "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
+      "@features/*": ["./src/features/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "@lib/*": ["./src/lib/*"],
+      "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/lib/utils/*"]
     },
 
