@@ -14,10 +14,10 @@ export default function AppRoutes() {
     <Routes>
       <Route element={<BaseLayout />}>
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/write" element={<EditorPage />} />
         <Route path="/content" element={<ContentPage />} />
         <Route path="/measure" element={<MeasurePage />} />
       </Route>
+      <Route path="/write" element={<EditorPage />} />
     </Routes>
   );
 }
